@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Tweetinvi;
+using System.Diagnostics;
  
 namespace TwitterViewer
 {
@@ -46,11 +48,32 @@ namespace TwitterViewer
             InitializeComponent();
             this.DataContext = _twitItems;  // ListBox 와의 DataBinding
             ConnectTwitter(twitScreenName.Text);
+            createTwitter();
+        }
+
+        public async void createTwitter(){
+            var appClient = new TwitterClient(APIkeys.consid, APIkeys.conskey);
+            // Start the authentication process
+            var authenticationRequest = await appClient.Auth.RequestAuthenticationUrlAsync();
+
+            // Go to the URL so that Twitter authenticates the user and gives him a PIN code.
+            Process.Start(new ProcessStartInfo(authenticationRequest.AuthorizationURL)
+            {
+                UseShellExecute = true
+            });
+            // Console.WriteLine("Please enter the code and press enter.");
+            // var pinCode = Console.ReadLine();
+            // var userCredentials = await appClient.Auth.RequestCredentialsFromVerifierCodeAsync(pinCode, authenticationRequest);
+            // var userClient = new TwitterClient(userCredentials);
+            // var user = await userClient.Users.GetAuthenticatedUserAsync();
+
+            // Console.WriteLine("Congratulation you have authenticated the user: " + user);
         }
  
         public void ConnectTwitter(string screenName)
         {
             _twitItems.Clear();
+
             var authHeader = string.Format("Basic {0}",
                 Convert.ToBase64String(
                     Encoding.UTF8.GetBytes(
