@@ -1,0 +1,41 @@
+﻿<Window x:Class="TwitterViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:TwitterViewer"
+        Title="TwitterViewer" Height="350" Width="525">
+    <Grid>
+        <Grid.Resources>
+            <my:ScreenName x:Key="screenName" Name="rigmania"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" x:Name="twitList"
+                 ItemsSource="{Binding}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Image DockPanel.Dock="Left"
+                               Source="{Binding Path=profile_image_url}" Height="50"/>
+                        <DockPanel DockPanel.Dock="Top" >
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=user}"/>
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding Path=created_at}"/>
+                        </DockPanel>
+                        <TextBlock DockPanel.Dock="Top"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Path=text}"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <DockPanel Grid.Row="1">
+            <TextBlock>Input TwitterUserName : </TextBlock>
+            <TextBox x:Name="twitScreenName"
+                     Text="{Binding Name, Source={StaticResource screenName}, Mode=TwoWay}"
+                     DockPanel.Dock="Left" Width="200"/>
+            <Button DockPanel.Dock="Left" Click="OnButtonCrawling">Crawling</Button>
+        </DockPanel>
+    </Grid>
+</Window>
