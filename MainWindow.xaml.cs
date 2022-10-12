@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Tweetinvi;
 using System.Diagnostics;
+using System.Threading;
+using System.Windows.Controls;
  
 namespace TwitterViewer
 {
@@ -42,17 +44,18 @@ namespace TwitterViewer
     public partial class MainWindow : Window
     {
         TwitItems _twitItems = new TwitItems();
- 
+        TwitterClient appClient = new TwitterClient(APIkeys.consid, APIkeys.conskey);
+        private SemaphoreSlim signal = new SemaphoreSlim(0,1);
+        private string pincode;
+
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = _twitItems;  // ListBox 와의 DataBinding
             ConnectTwitter(twitScreenName.Text);
-            createTwitter();
+            connectT1();
         }
-
-        public async void createTwitter(){
-            var appClient = new TwitterClient(APIkeys.consid, APIkeys.conskey);
+        public async void connectT1(){
             // Start the authentication process
             var authenticationRequest = await appClient.Auth.RequestAuthenticationUrlAsync();
 
@@ -61,15 +64,15 @@ namespace TwitterViewer
             {
                 UseShellExecute = true
             });
-            // Console.WriteLine("Please enter the code and press enter.");
-            // var pinCode = Console.ReadLine();
-            // var userCredentials = await appClient.Auth.RequestCredentialsFromVerifierCodeAsync(pinCode, authenticationRequest);
-            // var userClient = new TwitterClient(userCredentials);
-            // var user = await userClient.Users.GetAuthenticatedUserAsync();
 
-            // Console.WriteLine("Congratulation you have authenticated the user: " + user);
+            await signal.WaitAsync();
+            var userCredentials = await appClient.Auth.RequestCredentialsFromVerifierCodeAsync(pincode, authenticationRequest);
+            var userClient = new TwitterClient(userCredentials);
+            var user = await userClient.Users.GetAuthenticatedUserAsync();
+
+            tb.Text="Congratulation you have authenticated the user: " + user;
         }
- 
+
         public void ConnectTwitter(string screenName)
         {
             _twitItems.Clear();
@@ -139,7 +142,9 @@ namespace TwitterViewer
  
         private void OnButtonCrawling(object sender, RoutedEventArgs e)
         {
-            ConnectTwitter(twitScreenName.Text);
+            signal.Release();
+            pincode = twitScreenName.Text;
+//            ConnectTwitter(twitScreenName.Text);
         }
     }
 }

@@ -31,7 +31,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <DockPanel Grid.Row="1">
-            <TextBlock>Input TwitterUserName : </TextBlock>
+            <TextBlock Name="tb">Input TwitterUserName : </TextBlock>
             <TextBox x:Name="twitScreenName"
                      Text="{Binding Name, Source={StaticResource screenName}, Mode=TwoWay}"
                      DockPanel.Dock="Left" Width="200"/>
