@@ -1,7 +1,7 @@
-﻿<Window x:Class="TwitterViewer.MainWindow"
+﻿<Window x:Class="tt.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:my="clr-namespace:TwitterViewer"
+        xmlns:my="clr-namespace:tt"
         Title="TwitterViewer" Height="350" Width="525">
     <Grid>
         <Grid.Resources>

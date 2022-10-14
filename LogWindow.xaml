@@ -1,0 +1,13 @@
+<Window x:Class="tt.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:tt"
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="350" Width="525">
+ 
+    <TextBox Name="tbl" Canvas.Top="225" Canvas.Left="260">Input Pincode : </TextBox>
+    <TextBox x:Name="Pincode" Margin="10,10,10,10"
+            Width="200" Canvas.Top="240" Canvas.Left="100"/>
+    <Button Click="OnButtonSend" Margin="10,10,10,10"
+            Width="100" Canvas.Top="240" Canvas.Left="300">send</Button>
+</Window>
