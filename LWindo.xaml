@@ -1,0 +1,15 @@
+<Page x:Class="TwitterViewer.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:TwitterViewer"
+        Title="Login" Height="350" Width="525">
+      <!--TwitterViewr = namespace, Login = class -->
+ 
+    <Grid>
+        <TextBlock Name="tb">Input Pincode : </TextBlock>
+        <TextBox x:Name="Pincode"
+                  Text="{Binding Name, Source={StaticResource screenName}, Mode=TwoWay}"
+                  DockPanel.Dock="Left" Width="200"/>
+        <Button DockPanel.Dock="Left" Click="OnButtonSend">send</Button>
+    </Grid>
+</Page>

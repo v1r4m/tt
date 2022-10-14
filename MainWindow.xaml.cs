@@ -12,6 +12,8 @@ using Tweetinvi;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Navigation;
+using System.Windows.Forms;
  
 namespace TwitterViewer
 {
@@ -53,7 +55,9 @@ namespace TwitterViewer
             InitializeComponent();
             this.DataContext = _twitItems;  // ListBox 와의 DataBinding
             ConnectTwitter(twitScreenName.Text);
-            connectT1();
+            LogWindow sub = new LogWindow();
+            sub.ShowDialog();
+//            connectT1();
         }
         public async void connectT1(){
             // Start the authentication process
@@ -146,5 +150,42 @@ namespace TwitterViewer
             pincode = twitScreenName.Text;
 //            ConnectTwitter(twitScreenName.Text);
         }
+    }
+
+    public partial class LogWindow : Page{
+
+        TwitterClient ac = new TwitterClient(APIkeys.consid, APIkeys.conskey);
+        private string pc;
+        private SemaphoreSlim signal = new SemaphoreSlim(0,1);
+
+        public LogWindow(){
+//            InitializeComponent();
+            connectT1();
+        }
+        public async void connectT1(){
+        // Start the authentication process
+        var authenticationRequest = await ac.Auth.RequestAuthenticationUrlAsync();
+
+        // Go to the URL so that Twitter authenticates the user and gives him a PIN code.
+        Process.Start(new ProcessStartInfo(authenticationRequest.AuthorizationURL)
+        {
+            UseShellExecute = true
+        });
+
+        await signal.WaitAsync();
+        var userCredentials = await ac.Auth.RequestCredentialsFromVerifierCodeAsync(pc, authenticationRequest);
+        var userClient = new TwitterClient(userCredentials);
+        var user = await userClient.Users.GetAuthenticatedUserAsync();
+
+        tb.Text="Congratulation you have authenticated the user: " + user;
+        }
+
+        private void OnButtonSend(object sender, RoutedEventArgs e)
+        {
+            signal.Release();
+            pc = Pincode.Text;
+//            ConnectTwitter(twitScreenName.Text);
+        }
+        
     }
 }
