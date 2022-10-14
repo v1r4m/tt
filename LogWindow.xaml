@@ -3,11 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:tt"
         WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="{x:Null}"
         Title="Login" Height="350" Width="525">
- 
-    <TextBox Name="tbl" Canvas.Top="225" Canvas.Left="260">Input Pincode : </TextBox>
-    <TextBox x:Name="Pincode" Margin="10,10,10,10"
-            Width="200" Canvas.Top="240" Canvas.Left="100"/>
-    <Button Click="OnButtonSend" Margin="10,10,10,10"
-            Width="100" Canvas.Top="240" Canvas.Left="300">send</Button>
+    <Border BorderBrush="Gray" BorderThickness="0" Background="White" Margin="5">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="Gray" />
+        </Border.Effect>
+        <Canvas>
+            <TextBlock Name="tbl" Canvas.Top="100" Canvas.Left="110" FontFamily="{StaticResource Font1}">
+                    트위터 로그인 후 인증번호를 입력해 주세요. </TextBlock>
+            <TextBox x:Name="Pincode" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
+                    Height="50" Width="200" Canvas.Top="140" Canvas.Left="100"> 6 digit code </TextBox>
+            <Button Click="OnButtonSend" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
+                    Height="50" Width="100" Canvas.Top="140" Canvas.Left="320">send</Button>
+        </Canvas>
+    </Border>
 </Window>

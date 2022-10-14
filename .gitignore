@@ -14,6 +14,8 @@ APIKey.cs
 x64/
 [Bb]in/
 [Oo]bj/
+Fonts/
+resources/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

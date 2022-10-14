@@ -4,6 +4,8 @@ using System.Windows;
 using Tweetinvi;
 using System.Diagnostics;
 using System.Threading;
+using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace tt{
     public partial class LogWindow : Window{
@@ -15,6 +17,7 @@ namespace tt{
         public LogWindow(){
             InitializeComponent();
             connectT1();
+//            FontList();
         }
         public async void connectT1(){
         // Start the authentication process
@@ -39,5 +42,15 @@ namespace tt{
             signal.Release();
             pc = Pincode.Text;
         }
+
+        private void FontList()
+            {
+                List<string> fontList = new List<string>();
+                foreach (FontFamily font in Fonts.SystemFontFamilies)
+                {
+                    fontList.Add(string.Join(",", font.FamilyNames.Values));
+                    Debug.WriteLine(string.Join(",", font.FamilyNames.Values));
+                }
+            }
     }
 }
