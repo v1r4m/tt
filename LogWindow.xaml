@@ -1,23 +1,61 @@
 <Window x:Class="tt.LogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:my="clr-namespace:tt"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="{x:Null}"
         Title="Login" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="{StaticResource Font1}" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3"
+                                        HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}"
+                                                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                    Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E59400" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <StackPanel x:Key="ButtonMessage">
+            <TextBlock Name="BMessage" Text="send" FontSize="10" />
+        </StackPanel>
+    </Window.Resources>
+
     <Border BorderBrush="Gray" BorderThickness="0" Background="White" Margin="5">
         <Border.Effect>
             <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="Gray" />
         </Border.Effect>
         <Canvas>
-            <TextBlock Name="tbl" Canvas.Top="100" Canvas.Left="110" FontFamily="{StaticResource Font1}">
+            <TextBlock Name="tbl" Canvas.Top="120" Canvas.Left="110" FontFamily="{StaticResource Font1}">
                     트위터 로그인 후 인증번호를 입력해 주세요. </TextBlock>
             <TextBox x:Name="Pincode" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
                     Height="50" Width="200" Canvas.Top="140" Canvas.Left="100"> 6 digit code </TextBox>
             <Button Click="OnButtonSend" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
-                    Height="50" Width="100" Canvas.Top="140" Canvas.Left="320">send</Button>
+                    Height="50" Width="100" Canvas.Top="140" Canvas.Left="320" Content="StaticResource ButtonMessage"></Button>
         </Canvas>
     </Border>
 </Window>

@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Resource Include="resources\GmarketSansTTFMedium.ttf" />
     <PackageReference Include="Newtonsoft.JSON" Version="13.0.1" />
     <PackageReference Include="TweetinviAPI" Version="5.0.4" />
   </ItemGroup>
