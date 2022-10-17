@@ -10,7 +10,7 @@
         Background="{x:Null}"
         Title="Login" Height="350" Width="525">
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
+        <Style x:Key="SB" TargetType="Button">
             <Setter Property="Background" Value="#373737" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontSize" Value="15" />
@@ -19,7 +19,7 @@
 
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate TargetType="Button">
                         <Border CornerRadius="4" Background="{TemplateBinding Background}">
                             <Grid>
                                 <Path x:Name="PathIcon" Width="25" Height="25" Stretch="Fill" Fill="#4C87B3"
@@ -40,6 +40,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="CB" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <StackPanel x:Key="ButtonMessage">
             <TextBlock Name="BMessage" Text="send" FontSize="10" />
         </StackPanel>
@@ -50,14 +70,15 @@
             <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="Gray" />
         </Border.Effect>
         <Canvas>
-            <Path x:Name="closeButton" Width="24" Height="24" Margin="5,5,5,5"
-                    Stretch="Fill" Fill="#8f8f8f" Canvas.Right="0"
-                    Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+            <Button Click="OnCloseClicked" x:Name="closeButton" Margin="5,5,5,5" Width="24" Height="24"
+                    Canvas.Right="0" Style="{StaticResource CB}">
+                    <Path x:Name="PathIcon2" Stretch="Fill" Fill="#8f8f8f" Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+            </Button>
             <TextBlock Name="tbl" Canvas.Top="120" Canvas.Left="110" FontFamily="{StaticResource Font1}">
                     트위터 로그인 후 인증번호를 입력해 주세요. </TextBlock>
             <TextBox x:Name="Pincode" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
                     Height="50" Width="200" Canvas.Top="140" Canvas.Left="100"> 6 digit code </TextBox>
-            <Button Click="OnButtonSend" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
+            <Button Style="{StaticResource SB}" Click="OnButtonSend" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
                     Height="50" Width="100" Canvas.Top="140" Canvas.Left="320" Content="{StaticResource ButtonMessage}"></Button>
         </Canvas>
     </Border>

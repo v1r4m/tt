@@ -42,15 +42,8 @@ namespace tt{
             signal.Release();
             pc = Pincode.Text;
         }
-
-        private void FontList()
-            {
-                List<string> fontList = new List<string>();
-                foreach (FontFamily font in Fonts.SystemFontFamilies)
-                {
-                    fontList.Add(string.Join(",", font.FamilyNames.Values));
-                    Debug.WriteLine(string.Join(",", font.FamilyNames.Values));
-                }
-            }
+        private void OnCloseClicked(object sender, RoutedEventArgs e){
+            Close();
+        }
     }
 }
