@@ -23,7 +23,7 @@
                         <Border CornerRadius="4" Background="{TemplateBinding Background}">
                             <Grid>
                                 <Path x:Name="PathIcon" Width="25" Height="25" Stretch="Fill" Fill="#4C87B3"
-                                        HorizontalAlignment="Left" Margin="17,0,0,0" Data="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/> <!--import { mdiCheckBold } from '@mdi/js';-->
+                                        HorizontalAlignment="Left" Margin="10,0,0,0" Data="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/> <!--import { mdiCheckBold } from '@mdi/js';-->
                                 <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
                                                     Margin="0,0,0,0" />
@@ -50,6 +50,9 @@
             <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="Gray" />
         </Border.Effect>
         <Canvas>
+            <Path x:Name="closeButton" Width="24" Height="24" Margin="5,5,5,5"
+                    Stretch="Fill" Fill="#8f8f8f" Canvas.Right="0"
+                    Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
             <TextBlock Name="tbl" Canvas.Top="120" Canvas.Left="110" FontFamily="{StaticResource Font1}">
                     트위터 로그인 후 인증번호를 입력해 주세요. </TextBlock>
             <TextBox x:Name="Pincode" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
