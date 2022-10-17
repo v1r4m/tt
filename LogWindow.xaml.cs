@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.Collections.Generic;
 using System.Windows.Media;
+//using System.Windows.Forms.KeyEventARgs;
+using System.Windows.Input;
 
 namespace tt{
     public partial class LogWindow : Window{
@@ -44,6 +46,12 @@ namespace tt{
         }
         private void OnCloseClicked(object sender, RoutedEventArgs e){
             Close();
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e){
+            // if((e.KeyValue >= 48 && e.KeyValue <= 57) || (e.KeyValue >= 96 && e.KeyValue <= 105)){
+            //     tbl.Text=e.KeyValue.ToString(); 
+            // }
+            tbl.Text=e.Key.ToString();
         }
     }
 }

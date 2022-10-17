@@ -8,7 +8,8 @@
         AllowsTransparency="True"
         WindowStyle="None"
         Background="{x:Null}"
-        Title="Login" Height="350" Width="525">
+        Title="Login" Height="350" Width="525"
+        KeyDown="Window_KeyDown" >
     <Window.Resources>
         <Style x:Key="SB" TargetType="Button">
             <Setter Property="Background" Value="#373737" />
@@ -50,10 +51,14 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
+                            <Path x:Name="PathIcon2" Stretch="Fill" Fill="Transparent"
+                                    Stroke="#8f8f8f"
+                                    Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PathIcon2" Property="Fill" Value="#8f8f8f" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -61,7 +66,7 @@
             </Setter>
         </Style>
         <StackPanel x:Key="ButtonMessage">
-            <TextBlock Name="BMessage" Text="send" FontSize="10" />
+            <TextBlock Name="BMessage" Text="send" Margin="10,0,0,0" FontSize="10" />
         </StackPanel>
     </Window.Resources>
 
@@ -72,7 +77,7 @@
         <Canvas>
             <Button Click="OnCloseClicked" x:Name="closeButton" Margin="5,5,5,5" Width="24" Height="24"
                     Canvas.Right="0" Style="{StaticResource CB}">
-                    <Path x:Name="PathIcon2" Stretch="Fill" Fill="#8f8f8f" Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                    
             </Button>
             <TextBlock Name="tbl" Canvas.Top="120" Canvas.Left="110" FontFamily="{StaticResource Font1}">
                     트위터 로그인 후 인증번호를 입력해 주세요. </TextBlock>
