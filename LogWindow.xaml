@@ -22,8 +22,8 @@
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border CornerRadius="4" Background="{TemplateBinding Background}">
                             <Grid>
-                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3"
-                                        HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <Path x:Name="PathIcon" Width="25" Height="25" Stretch="Fill" Fill="#4C87B3"
+                                        HorizontalAlignment="Left" Margin="17,0,0,0" Data="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/> <!--import { mdiCheckBold } from '@mdi/js';-->
                                 <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}"
                                                     HorizontalAlignment="Center" VerticalAlignment="Center"
                                                     Margin="0,0,0,0" />
@@ -55,7 +55,7 @@
             <TextBox x:Name="Pincode" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
                     Height="50" Width="200" Canvas.Top="140" Canvas.Left="100"> 6 digit code </TextBox>
             <Button Click="OnButtonSend" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
-                    Height="50" Width="100" Canvas.Top="140" Canvas.Left="320" Content="StaticResource ButtonMessage"></Button>
+                    Height="50" Width="100" Canvas.Top="140" Canvas.Left="320" Content="{StaticResource ButtonMessage}"></Button>
         </Canvas>
     </Border>
 </Window>
