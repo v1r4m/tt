@@ -49,6 +49,7 @@ namespace tt
         TwitterClient appClient = new TwitterClient(APIkeys.consid, APIkeys.conskey);
         private SemaphoreSlim signal = new SemaphoreSlim(0,1);
         private string pincode;
+        private TwitterClient userClient;// = new TwitterClient();
 
         public MainWindow()
         {
