@@ -53,7 +53,8 @@
                         <Grid>
                             <Path x:Name="PathIcon2" Stretch="Fill" Fill="Transparent"
                                     Stroke="#8f8f8f"
-                                    Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                                    Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/> 
+                                    <!-- https://materialdesignicons.com/ -->
                             <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -80,9 +81,53 @@
                     
             </Button>
             <TextBlock Name="tbl" Canvas.Top="120" Canvas.Left="110" FontFamily="{StaticResource Font1}">
-                    트위터 로그인 후 인증번호를 입력해 주세요. </TextBlock>
+                    로그인 후 인증번호를 입력해 주세요. </TextBlock>
             <TextBox x:Name="Pincode" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
                     Height="50" Width="200" Canvas.Top="140" Canvas.Left="100"> 6 digit code </TextBox>
+            <UniformGrid x:Name="Pin" Height="50" Width="200" Canvas.Top="240" Canvas.Left="100"
+                    Columns="6" Rows="1">
+                <Path x:Name="Blank" Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+            </UniformGrid>
+            <UniformGrid x:Name="PinInput" Height="50" Width="200" Canvas.Top="240" Canvas.Left="100"
+                    Columns="6" Rows="1">
+                <Path x:Name="Filled" Fill="#000000" Height="24" Width="24"
+                    Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+            </UniformGrid>
+            <!-- <ItemsControl Height="50" Width="200" Canvas.Top="240" Canvas.Left="100" VerticalAlignment="Center" HorizontalAlignment="center" Margin="100">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                <Path Fill="#000000" Height="24" Width="24"
+                    Data="M20,22H4V18H20" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5" Rows="5">
+                        </UniformGrid>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl> -->
             <Button Style="{StaticResource SB}" Click="OnButtonSend" Margin="10,10,10,10" FontFamily="{StaticResource Font1}"
                     Height="50" Width="100" Canvas.Top="140" Canvas.Left="320" Content="{StaticResource ButtonMessage}"></Button>
         </Canvas>
